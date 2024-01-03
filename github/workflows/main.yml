@@ -1,0 +1,18 @@
+name: veracode-scan
+
+env: 
+          vid: ${{ vars.VERACODE_APP_ID }}
+          vkey: ${{ secrets.VERACODE_APP_SECRET_KEY }}
+on:
+  push:
+    branches: 
+      - master
+  workflow_dispatch:
+      
+jobs:
+  veracode-scan:
+    uses: Sitecore-Internal/sitecore.securityqa.pipelinescan.frontend/.github/workflows/VeracodeScan.yaml@master
+    secrets: inherit
+    with:
+          ProjectName: "sitecore.pocapp"
+    
